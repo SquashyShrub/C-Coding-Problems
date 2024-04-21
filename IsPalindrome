@@ -1,0 +1,39 @@
+public class Answer {
+
+    // Determine whether a string is a Palindrome
+    public static bool IsPalindrome(string thestr) {
+        // Your code goes here.
+        string teststring;
+
+        // Convert the string to upper-case
+        teststring = thestr.ToUpper();
+
+        // Use a StringBuilder to strip out all the punctualtion and white space
+        var sb = new StringBuilder();
+        foreach (char c in teststring) {
+            // Add characters to the builder if not punctuation or white space
+            if (!char.IsPunctuation(c) && !char.IsWhiteSpace(c)) {
+                sb.Append(c);
+            }
+        }
+        // Convert the builder to the finished string
+        teststring = sb.ToString();
+
+        // Compare characters starting at beginning and end of string
+        int i = 0;
+        int j = teststring.Length - 1;
+
+        // If the indexes cross each other, the we're done
+        while (i <= j) {
+            if (teststring[i] != teststring[j]) {
+                return false;
+            }
+            //Update the counters and try again
+            i++;
+            j--;
+        }
+        // If we reach this point, it must be a palindrome
+        return true;
+
+    }
+}
